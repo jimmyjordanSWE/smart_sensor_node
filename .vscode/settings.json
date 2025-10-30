@@ -9,6 +9,7 @@
         "editor.defaultFormatter": "ms-vscode.cpptools"
     },
     "files.associations": {
-        "unistd.h": "c"
+        "unistd.h": "c",
+        "inet.h": "c"
     }
 }

@@ -1,11 +1,11 @@
 # Compiler and flags
 CC = gcc
-LIBS = -Ilibs # add libraries for gcc here
+LIBS = -Isrc/libs  # add libraries for gcc here
 LDFLAGS :=  # add libraries for linker here 
 CFLAGS := -g -Wall -Wextra -std=gnu99 -MMD -MP $(LIBS)
 
-# Source files
-SRC := $(wildcard src/*.c)
+# Source files - now includes both src/*.c and src/libs/*.c
+SRC := $(wildcard src/*.c) $(wildcard src/libs/*.c)
 OBJ := $(patsubst src/%.c, build/%.o, $(SRC))
 
 # Output binary
@@ -20,6 +20,7 @@ $(OUT): $(OBJ)
 
 # Compile each source file
 build/%.o: src/%.c | build
+	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # Create build directory if it doesn't exist

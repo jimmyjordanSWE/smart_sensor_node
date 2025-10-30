@@ -1,3 +1,4 @@
+#include "libs/sensor_temp.h"
 #include <arpa/inet.h>
 #include <netdb.h>
 #include <netinet/in.h>
@@ -35,6 +36,15 @@ int main(int argc, char* argv[]) {
     printf("Started %s with %d command-line arguments\n", argv[0], argc - 1);
     printf("%ld CPU cores available\n", cores);
     printf("%ld MB total RAM\n%ld MB free RAM\n\n", total_ram, free_ram);
+
+    /////////////////////////////
+    // init sensor
+    temperature_sensor* sensor = NULL;
+    int init_status = sensor_temp_init(&sensor, (size_t)5000, (float)40.0f, (float)-20.0f);
+    if (init_status != 0) {
+        fprintf(stderr, "ERROR: Sensor initialization failed with status code %d. Exiting program.\n", init_status);
+        return 1;
+    }
 
     /////////////////////////////
     // Resolve host and connect
