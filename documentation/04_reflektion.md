@@ -11,8 +11,9 @@ Använde min standard projekt mall för github med makefile, debugging, code for
 Sockets API:et i linux skapar tcp anslutningar. (följer POSIX standarden) HTTP är textprotokollet man sänder över socketen. Om man har kontroll över både server och klient kan man skicka vad man vill över. MEn o mdet ska funka med alla datorer måste man så klart följa någon standard. Så som HTTP 1.1 
 
 # Hur använde du pekare, pek-pekare och funktionspekare i din kod, och varför?
-Jag är inte klar med det riktiga projektet jag borde jobba på just nu. Så använde inga alls. KÖttade bara klart detta så fort jag kunde då jag nu redan ligger efter.
-De kommer behövas sen när man har en state machine och man ska lägga in en task i den. Men är kvar på stadiet att bygga mitt egna http / tcp libs och förstå state machines och callback patternet så inte kommit så långt än. 
+Körde "opaque pattern" på sensorn så man skickar in en dubblepekare för att malloca innuti den dolda implementationen. Gillar den stylen.
+Sedan lade jag till en alarm funktions funktion på sensorn. Man kan skicka in en funktion med funktionspekare som sätts som alarmfunktion och så kan man när som helst köra den för att kolla. 
+I framtiden kan man ha en länkad lista med alarm som också registeras automatiskt i en work loop så att alarm alltid kollas och  ger utslag oavsett hur slarviga programmerarna är. 
 
 # Vilka risker eller förbättringsmöjligheter ser du i din implementation?
 Den är helt kass och ska absolut inte användas. I en riktig betaversion skulle jag vilja använda mina egna tcp, http parsing libs tillsammans med en icke-callback state machines för att sköta conneciton lifetimes och parsing.
