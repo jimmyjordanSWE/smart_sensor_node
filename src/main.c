@@ -42,7 +42,7 @@ int main(int argc, char* argv[]) {
     hints.ai_family = AF_INET;
     hints.ai_socktype = SOCK_STREAM;
 
-    if (getaddrinfo("httpbin.org", "80", &hints, &res) != 0) {
+    if (getaddrinfo("www.google.com", "80", &hints, &res) != 0) {
         perror("getaddrinfo");
         return 1;
     }

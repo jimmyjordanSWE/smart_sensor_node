@@ -12,10 +12,10 @@ Sockets API:et i linux skapar tcp anslutningar. (följer POSIX standarden) HTTP 
 
 # Hur använde du pekare, pek-pekare och funktionspekare i din kod, och varför?
 Jag är inte klar med det riktiga projektet jag borde jobba på just nu. Så använde inga alls. KÖttade bara klart detta så fort jag kunde då jag nu redan ligger efter.
-De kommer behövas sen när man har en state machine och man ska lägga in en task i den. Men är kvar på stadiet att bygga mitt egna http / tcp libs och förstå state machines så inte kommit så långt än. 
+De kommer behövas sen när man har en state machine och man ska lägga in en task i den. Men är kvar på stadiet att bygga mitt egna http / tcp libs och förstå state machines och callback patternet så inte kommit så långt än. 
 
 # Vilka risker eller förbättringsmöjligheter ser du i din implementation?
-Den är helt kass och ska absolut inte användas.
+Den är helt kass och ska absolut inte användas. I en riktig betaversion skulle jag vilja använda mina egna tcp, http parsing libs tillsammans med en icke-callback state machines för att sköta conneciton lifetimes och parsing.
 
 # Länk till GIT-repot som hör till projektet.
 https://github.com/jimmyjordanSWE/smart_sensor_node
