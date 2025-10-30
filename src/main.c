@@ -20,6 +20,13 @@ const char* request =
     "    \"temperature\": \"<temperature>°C\"\r\n"
     "}\r\n";
 
+// return 1 if temp is lethally hot, -1 if lethally cold and 0 if in range.
+int sensor_temp_alarm_lethal_temp(float temp, float min, float max) {
+    if (temp >= max) return 1;
+    if (temp <= min) return -1;
+    return 0;
+}
+
 int main(int argc, char* argv[]) {
     // CPU + RAM info
     long cores = sysconf(_SC_NPROCESSORS_ONLN);
@@ -44,6 +51,15 @@ int main(int argc, char* argv[]) {
     if (init_status != 0) {
         fprintf(stderr, "ERROR: Sensor initialization failed with status code %d. Exiting program.\n", init_status);
         return 1;
+    }
+    // set sensors alarm function
+    sensor_temp_set_alarm(sensor, sensor_temp_alarm_lethal_temp);
+
+    // check if Bob is still alive
+    if (sensor_temp_check_alarm(sensor) != 0) {
+        // TODO unlock door and call cleaner
+    } else {
+        // raise or lower temp?
     }
 
     /////////////////////////////
@@ -84,6 +100,7 @@ int main(int argc, char* argv[]) {
         printf("%s", buf);
     }
 
+    sensor_temp_destroy(&sensor);
     close(sock);
     return 0;
 }
